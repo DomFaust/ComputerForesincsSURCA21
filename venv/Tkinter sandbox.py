@@ -1,6 +1,6 @@
-from tkinter import *
+import tkinter as tk
 
-test = Tk()
+test = tk.Tk()
 test.mainloop()
 
 # Working Tkinter test.
