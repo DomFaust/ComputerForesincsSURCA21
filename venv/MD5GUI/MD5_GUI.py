@@ -2,8 +2,6 @@ import hashlib
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
-allFiles = [] #array to store files
-
 def fileChooser(): #select files and add to file array
     global result
 
