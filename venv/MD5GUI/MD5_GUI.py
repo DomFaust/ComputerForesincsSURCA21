@@ -2,8 +2,6 @@ import hashlib
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
-allFiles = [] #array to store files
-
 def fileChooser(): #select files and add to file array
     global result
 
@@ -51,11 +49,23 @@ window = tk.Label(GUI, text = "Calcuating MD5 of Files",
                width = 100, height = 4, fg = "blue")
 
 button1 = tk.Button(GUI,
-                        text = "Browse for First File for MD5 Hash",
-                        command = fileChooser)
+                    text = "Browse for First File for MD5 Hash",
+                    command = lambda:[fileChooser(),switch()])
+def switch():
+    if button1["state"] == "normal":
+        button1["state"] = "disabled"
+    else:
+        button1["state"] = "normal"
+
+def switch2():
+    if button2["state"] == "normal":
+        button2["state"] = "disabled"
+    else:
+        button2["state"] = "normal"
+
 button2 = tk.Button(GUI,
                         text = "Recalculate MD5 Hash",
-                        command = recalc)
+                        command = lambda:[recalc(),switch2()])
 button3 = tk.Button(GUI,
                     text = "MD5 Comparison",
                     command = MD5Comp)
