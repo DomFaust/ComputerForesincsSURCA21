@@ -2,8 +2,10 @@ import hashlib
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
+
 def fileChooser(): #select files and add to file array
     global result
+    global fileName
 
     fileName = askopenfilename()
     result = hashlib.md5()
@@ -23,7 +25,6 @@ def fileChooser(): #select files and add to file array
 def recalc():
     global result1
 
-    fileName = askopenfilename()
     result1 = hashlib.md5()
 
     with open(fileName, 'rb') as f:
@@ -41,7 +42,7 @@ def MD5Comp(): #empty until MD5 code
         window.configure(text = "The file has been modified or tampered with")
 
 GUI = tk.Tk()
-GUI.title('SURCA Project')
+GUI.title('Senior Project')
 GUI.geometry("700x300")
 GUI.config(background = "white")
 
@@ -54,14 +55,18 @@ button1 = tk.Button(GUI,
 def switch():
     if button1["state"] == "normal":
         button1["state"] = "disabled"
+        button2["state"] = "normal"
     else:
         button1["state"] = "normal"
 
 def switch2():
     if button2["state"] == "normal":
         button2["state"] = "disabled"
+        button3["state"] = "normal"
     else:
         button2["state"] = "normal"
+
+
 
 button2 = tk.Button(GUI,
                         text = "Recalculate MD5 Hash",
@@ -77,7 +82,9 @@ window.grid(column=1, row=1)
 
 button1.grid(column=1, row=2)
 button2.grid(column=1, row=3)
+button2["state"] = "disabled"
 button3.grid(column=1, row=4)
+button3["state"] = "disabled"
 
 L1 = tk.Listbox(GUI,width = 100, height= 4)
 L1.grid(column = 1, row = 5)
