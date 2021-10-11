@@ -1,0 +1,6 @@
+.colored-card:hover{
+  background-color: #0072BC;
+  border:  2px solid #FFE500;
+  color: white;
+
+}

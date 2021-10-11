@@ -1,0 +1,26 @@
+.emptySpace{
+  flex: 1 1 auto;
+}
+
+.mat-toolbar{
+  color: white;
+  background: #00053E;
+}
+
+.gold-icon{
+  color:gold
+}
+
+.button{
+  border-radius: 25px;
+  border-color: 2px solid rgb(83, 155, 260);
+}
+
+.button:hover{
+
+  border: 1px solid #FFE500
+}
+
+/* .image{
+  filter: invert(100%);
+} */
