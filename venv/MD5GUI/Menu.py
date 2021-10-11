@@ -1,27 +1,27 @@
 import tkinter as tk
 #from SURCA21_sandbox import MD5GUI
 from MD5GUI import MD5_GUI
+from MD5GUI import Browser
 
-GUI = tk.Tk()
-GUI.title('Menu')
-GUI.geometry("700x300")
-GUI.config(background = "white")
+def browser():
+    win = tk.Toplevel(GUI)
+    Browser.url(win)
 
-window = tk.Label(GUI, text = "Please Select What you Would Like to do",
-               width = 100, height = 4, fg = "blue")
-def createNewWindow():
-   # newWindow = tk.Toplevel(GUI)
-    #labelExample = tk.Label(newWindow, text = "New Window")
-    #buttonExample = tk.Button(newWindow, text = "New Window button")
+def MD5():
+    win = tk.Toplevel(GUI)
+    MD5_GUI.MD5GUI(win)
 
-    #labelExample.pack()
-    #buttonExample.pack()
-    MD5_GUI.main()
-
-
-
-
-buttonExample = tk.Button(GUI, text="Create new window",command=createNewWindow)
-buttonExample.grid(column=1, row=7)
-
-GUI.mainloop()
+if __name__ == "__main__":
+    GUI = tk.Tk()
+    GUI.title('Menu')
+    GUI.geometry("300x300")
+    GUI.config(background = "white")
+    window = tk.Label(GUI, text = "Please Select What you Would Like to do",
+                   width = 100, height = 4, fg = "blue")
+    md5Button = tk.Button(GUI, text="MD5 Comparison",command=MD5)
+    md5Button.grid(column=1, row=1)
+    broButton = tk.Button(GUI, text="Browser",command = browser)
+    broButton.grid(column=1,row=2)
+    buttonExit = tk.Button(GUI,text="Exit",command=exit)
+    buttonExit.grid(column=1,row=3)
+    GUI.mainloop()
