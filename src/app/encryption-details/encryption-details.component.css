@@ -1,6 +1,7 @@
-.colored-card:hover{
-  background-color: #0072BC;
-  border:  2px solid #FFE500;
-  color: white;
-
+.colored-card{
+  border-radius: 10px;
+  border: 2px solid #7BAFDE;
+  margin: 50px;
+  width: 65%;
+  height: 55%;
 }
