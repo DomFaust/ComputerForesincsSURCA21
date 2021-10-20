@@ -13,13 +13,13 @@ def MD5GUI(Frame):
 
     button1 = tk.Button(GUI,
                         text="Browse for First File for MD5 Hash",
-                        command=lambda: [fileChooser(window,L1), switch(button1,button2)])
+                        command=lambda: [clear(L1),fileChooser(window,L1), switch(button1,button2)])
     button2 = tk.Button(GUI,
                         text="Recalculate MD5 Hash",
                         command=lambda: [recalc(window,L1), switch2(button2,button3)])
     button3 = tk.Button(GUI,
                         text="MD5 Comparison",
-                        command=lambda: [MD5Comp(window)])
+                        command=lambda: [MD5Comp(window),switch(button1,button2)])
     buttonExit = tk.Button(GUI,
                            text="Exit",
                            command=GUI.destroy)
@@ -37,6 +37,8 @@ def MD5GUI(Frame):
 
     buttonExit.grid(column=1, row=6)
 
+def clear(L1):
+    L1.delete(0,tk.END)
 
 def fileChooser(window, L1): #select files and add to file array
     global result
@@ -51,11 +53,7 @@ def fileChooser(window, L1): #select files and add to file array
 
     window.configure(text="MD5 Hash: " + result.hexdigest()) #change to output MD5 hash
 
-    if(L1.size() == 4):
-        L1.delete(0,tk.END)
-        L1.insert(tk.END,fileName,result.hexdigest())
-    else:
-        L1.insert(tk.END, fileName, result.hexdigest())
+    L1.insert(tk.END, fileName, result.hexdigest())
 
 def recalc(window, L1):
     global result1
@@ -91,6 +89,8 @@ def switch2(button2,button3):
         button3["state"] = "normal"
     else:
         button2["state"] = "normal"
+
+
 
 
 
