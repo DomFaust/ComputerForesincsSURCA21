@@ -1,9 +1,16 @@
 <mat-toolbar color = "primary" style="height:75px;">
-    <img class = "image" src = "https://www.widener.edu/sites/default/files/2019-07/wu_fulllogo_long_white.png"
+    <img src = "https://www.widener.edu/sites/default/files/2019-07/wu_fulllogo_long_white.png"
     alt = "White Widener University Logo and Shield" height = "60%" style = "margin-left: 0%; cursor: pointer;" (click)=home()>
 
 
     <span class="emptySpace"></span>
 
-    <button class = "button" mat-button style = "cursor:pointer;" (click)=about()>About Us</button>
+    <button class = "button" mat-button [matMenuTriggerFor]="pages"
+        style = "cursor:pointer;">Explore<mat-icon>expand_more</mat-icon></button>
+    <mat-menu #pages="matMenu" xPosition = "before">
+      <button class = "menu-button" mat-menu-item (click)=home()>Home</button>
+      <button class = "menu-button" mat-menu-item (click)=encrypt()>Encryption</button>
+      <button class = "menu-button" mat-menu-item (click)=pass_crack()>Password Cracking</button>
+      <button class = "menu-button" mat-menu-item (click)=about()>About Us</button>
+    </mat-menu>
 </mat-toolbar>

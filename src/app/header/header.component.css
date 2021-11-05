@@ -8,7 +8,7 @@
 }
 
 .gold-icon{
-  color:gold
+  color:gold;
 }
 
 .button{
@@ -17,10 +17,22 @@
 }
 
 .button:hover{
-
-  border: 1px solid #FFE500
+  border: 1px solid #FFE500;
 }
 
-/* .image{
-  filter: invert(100%);
-} */
+.menu-button{
+  color: #00053E;
+  font-weight: bold;
+}
+
+.menu-button:hover{
+  /* border: 1px solid #FFE500; */
+  color: #0072BC;
+  text-decoration: underline;
+  text-decoration-color: #FFE500;
+}
+
+.matMenu
+{
+  background-color: #FFE500;
+}

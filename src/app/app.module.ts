@@ -16,6 +16,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { CrackPasswordDetailsComponent } from './crack-password-details/crack-password-details.component';
 import { EncryptionDetailsComponent } from './encryption-details/encryption-details.component';
 import { InfoComponent } from './info/info.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import { InfoComponent } from './info/info.component';
     MatExpansionModule,
     MatCardModule,
     MatGridListModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

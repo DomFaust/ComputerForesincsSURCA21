@@ -5,3 +5,18 @@
   width: 65%;
   height: 55%;
 }
+
+.tab-group{
+  overflow-y: hidden;
+}
+
+.mat-tab-labels
+{
+ color:#7BAFDE !important;
+}
+
+.mat-tab-labels:hover{
+  border: 1px solid #FFE500;
+  background-color: #7BAFDE;
+  color:#7BAFDE;
+}

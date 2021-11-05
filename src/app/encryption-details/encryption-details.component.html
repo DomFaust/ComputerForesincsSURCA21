@@ -1,4 +1,9 @@
-      <h6 style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
+
+<mat-tab-group class="tab-group">
+  <mat-tab label="General" class="mat-tab-labels">
+    <br><br>
+
+    <h6 style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
         Welcome to the world of Encryption!</h6>
 
       <p style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
@@ -95,56 +100,133 @@
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
-                <!-- <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+    </mat-grid-list>
+</div>
+ </mat-tab>
+
+
+
+
+  <mat-tab label="JPEG" class = "mat-tab-labels">
+    <br><br>
+
+    <h6 style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
+        Welcome to the JPEG section!</h6>
+
+      <p style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
+        This section focuses on identifying and extracting information from these files. </p>
+
+
+    <div class="grid-container" >
+    <mat-grid-list cols="2" rowHeight="250px" fxFlexAlign="stretch" fxLayoutAlign="space-evenly center" >
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
           <mat-card class = "colored-card">
             <mat-card-title>
-              Defintion 4
+              Metadata
             </mat-card-title>
             <mat-card-content>
-              Encryption
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
-          <mat-card class = "colored-card">
-            <mat-card-title>
-              Defintion 4
-            </mat-card-title>
-            <mat-card-content>
-              Encryption
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
-          <mat-card class = "colored-card">
-            <mat-card-title>
-              Defintion 4
-            </mat-card-title>
-            <mat-card-content>
-              Encryption
+              <br>
+              <strong>Information about a data structure, such as a file. It can define many things, including:
+                modified time, created time, file ownership, and file size.</strong>
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
           <mat-card class = "colored-card">
             <mat-card-title>
-              List of Potential Defintions
+              JPEG
             </mat-card-title>
             <mat-card-content>
-              Plaintext
-              Ciphertext
-              Encryption
-              Decryption
-              Keys
-              Hash
-              Public Keys
-              Private Keys
-              Symmetric Algorithms
-              Asymmetric Algorithms
-              HTTPS
-              End-to-end Encryption
+              <br>
+              <strong>Also referred to as JPG. A file format that is used to compress image files.</strong>
             </mat-card-content>
           </mat-card>
-        </mat-grid-tile> -->
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              Exchangeable Image File Format (EXIF)
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>It is included in JPEG files and
+                contains an abundance of information about the file itself.
+              </strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              Python Image Library (PIL)
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>A library in the Python programming language that is built upon the Dictionary
+                data structure. It is capable of extracting information
+                from JPEG files and manipulating that information as a user chooses.
+              </strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              Tags
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>An object that provides keys that are used to access dictionary elements. In
+                the Python Image Library, there are multiple sets of Tags including EXIFTAGS and
+                GPSTAGS.
+              </strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              EXIFTAGS
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>This object provides information detailing the exact qualities and
+                attributes of the image.</strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              GPSTAGS
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>This is the object that provides access to the dictionary items that identify
+                the location-based information about an image.
+              </strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" style="margin-right: 100px;">
+          <mat-card class = "colored-card">
+            <mat-card-title>
+              Requirements for GPS/EXIF Extraction
+            </mat-card-title>
+            <mat-card-content>
+              <br>
+              <strong>Command Line Arguments<br>
+              Forensic Audit Log<br>
+              Provided Output<br>
+              Error Handling</strong>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
     </mat-grid-list>
 </div>
+ </mat-tab>
+  <!-- <mat-tab label="PDF"> <h6>Information Coming Soon....</h6> </mat-tab> -->
+</mat-tab-group>
+
+

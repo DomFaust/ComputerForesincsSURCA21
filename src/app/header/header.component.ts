@@ -21,4 +21,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['about']);
   }
 
+  encrypt(){
+    this.router.navigate(['encryption']);
+  }
+
+  pass_crack(){
+    this.router.navigate(['password-cracking'])
+  }
+
 }
