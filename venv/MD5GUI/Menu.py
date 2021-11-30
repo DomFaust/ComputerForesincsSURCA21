@@ -3,6 +3,9 @@ import tkinter as tk
 from MD5GUI import MD5_GUI
 from MD5GUI import Browser
 from MD5GUI import Sha
+from MD5GUI import PDF
+from MD5GUI import exifData
+from MD5GUI import PictureData
 
 def browser():
     win = tk.Toplevel(GUI)
@@ -15,6 +18,18 @@ def sha():
 def MD5():
     win = tk.Toplevel(GUI)
     MD5_GUI.MD5GUI(win)
+
+def pdf():
+    win = tk.Toplevel(GUI)
+    PDF.pdf(win)
+
+def jpg():
+    win = tk.Toplevel(GUI)
+    exifData.jpg(win)
+
+def png():
+    win = tk.Toplevel(GUI)
+    PictureData.png(win)
 
 if __name__ == "__main__":
     GUI = tk.Tk()
@@ -30,6 +45,12 @@ if __name__ == "__main__":
     broButton.grid(column=1,row=3)
     shaButton = tk.Button(GUI, text="Sha1 and Sha2",command = sha)
     shaButton.grid(column=1,row=4)
+    pdfButton = tk.Button(GUI,text="PDF Metadata",command = pdf)
+    pdfButton.grid(column=1,row=5)
+    jpgButton = tk.Button(GUI, text="Picture Exif Metadata (deprecated)", command = jpg)
+    jpgButton.grid(column=1, row=6)
+    pngButton = tk.Button(GUI, text="Picture Metadata", command = png)
+    pngButton.grid(column=1, row=7)
     buttonExit = tk.Button(GUI,text="Exit",command=exit)
-    buttonExit.grid(column=1,row=5)
+    buttonExit.grid(column=1,row=8)
     GUI.mainloop()
