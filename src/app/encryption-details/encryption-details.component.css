@@ -4,6 +4,7 @@
   margin: 50px;
   width: 65%;
   height: 55%;
+  overflow-y: auto;
 }
 
 .tab-group{
