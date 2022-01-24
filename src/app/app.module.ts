@@ -19,6 +19,8 @@ import { InfoComponent } from './info/info.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
+import { DatabaseComponent } from './home/database/database.component';
+import { DatabaseDetailsComponent } from './database-details/database-details.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
     CrackPasswordDetailsComponent,
     EncryptionDetailsComponent,
     InfoComponent,
+    DatabaseComponent,
+    DatabaseDetailsComponent,
 
   ],
   imports: [

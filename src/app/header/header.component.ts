@@ -29,4 +29,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['password-cracking'])
   }
 
+  database(){
+    this.router.navigate(['database'])
+  }
 }
