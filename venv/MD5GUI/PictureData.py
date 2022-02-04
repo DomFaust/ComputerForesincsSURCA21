@@ -2,6 +2,10 @@ from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+import json
+import firebase_admin
+from firebase_admin import db
+from datetime import date
 
 def png(Frame):
     GUI = tk.Tk()
@@ -36,6 +40,7 @@ def clear(L1):
     L1.delete(0,tk.END)
 
 def pngInfo(window,L1):
+    ref = db.reference("/Picture Metadata/" + date.today().strftime("%m_%d_%y"))
 
     imageName = askopenfilename(
         title="Select Picture File",
@@ -50,8 +55,8 @@ def pngInfo(window,L1):
 
     for line in metadata.exportPlaintext():
         L1.insert(tk.END,line)
-        print(line)
-
+        #print(line)
+    ref.push(json.dumps(metadata.exportPlaintext(),separators= (", ", ": ")))
 
 
 if __name__ == "__main__":

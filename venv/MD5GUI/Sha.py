@@ -1,8 +1,14 @@
 import hashlib
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+import json
+import firebase_admin
+from firebase_admin import db
+from datetime import date
 
-def Sha(Frame):
+def Sha(Frame,cred,defaultApp,ref):
+
+
     GUI = tk.Tk()
     GUI.title('Sha 1 and Sha 2')
     GUI.geometry("700x400")
@@ -36,7 +42,11 @@ def Sha(Frame):
 def clear(L1):
     L1.delete(0,tk.END)
 
+
 def calculate2(window, L1):
+    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%y") + "_SHA 2")
+    print(ref.get())
+
     window.configure(text="Sha 2")
     fileName = askopenfilename()
     m = hashlib.sha224()
@@ -74,8 +84,19 @@ def calculate2(window, L1):
         L1.insert(tk.END, "Digest Size: ", j.digest_size)
         L1.insert(tk.END, "Block Size: ", j.block_size)
 
+        ref.push({
+            'Session File': fileName, 'Sha 224 Hex Digest': m.hexdigest(), 'Sha 224 Digest Size': m.digest_size,
+            'Sha 224 Block Size': m.block_size, 'Sha 256 Hex Digest': n.hexdigest(), 'Sha 256 Digest Size': n.digest_size,
+            'Sha 256 Block Size': n.block_size, 'Sha 384 Hex Digest': k.hexdigest(), 'Sha 384 Digest Size': k.digest_size,
+            'Sha 384 Block Size': k.block_size, 'Sha 512 Hex Digest': j.hexdigest(), 'Sha 512 Digest Size': j.digest_size,
+            'Sha 512 Block Size': j.block_size
+        })
+
 
 def calculate(window,L1):
+    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%y")+ "_SHA 1")
+    print(ref.get())
+
     window.configure(text="Sha 1")
     fileName = askopenfilename()
     m = hashlib.sha1()
@@ -84,6 +105,10 @@ def calculate(window,L1):
         data = f.read()
         m.update(data)
 
+        ref.push({
+           'Session File':fileName, 'Hex Digest':m.hexdigest(),'Digest Size': m.digest_size,'Block Size': m.block_size
+        })
+
         L1.insert(tk.END, fileName)
         L1.insert(tk.END, m.hexdigest())
         L1.insert(tk.END, "Digest Size: ", m.digest_size)
@@ -91,6 +116,6 @@ def calculate(window,L1):
 
 
 if __name__ == "__main__":
-    Sha(GUI)
+    Sha(GUI,cred,defaultApp,ref)
     # Let the window wait for any events
     GUI.mainloop()

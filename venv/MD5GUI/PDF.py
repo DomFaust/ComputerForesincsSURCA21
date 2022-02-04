@@ -1,6 +1,10 @@
 from PyPDF2 import PdfFileReader
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+import json
+import firebase_admin
+from firebase_admin import db
+from datetime import date
 
 def pdf(Frame):
     GUI = tk.Tk()
@@ -32,6 +36,7 @@ def pdf(Frame):
     scroll.config(command=L1.xview)
 
 def pdfInfo(window,L1):
+    ref = db.reference("/PDF Metadata/" + date.today().strftime("%m_%d_%y"))
     fileName = askopenfilename(
         title="Open PDF File",
         filetypes=(
@@ -51,6 +56,10 @@ def pdfInfo(window,L1):
         else:
             window.configure(text="Current Document Name: " + fileName)
             L1.insert(tk.END,"Document Info:\n",pdf.documentInfo)
+            con = json.dumps(pdf.documentInfo)
+            ref.push(con)
+           # print("??",con)
+
 
     #L1.insert(tk.END,"\nDocument Name: " + fileName)
 

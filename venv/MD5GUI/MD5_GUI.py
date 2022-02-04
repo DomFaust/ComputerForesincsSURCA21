@@ -1,6 +1,10 @@
 import hashlib
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+import json
+import firebase_admin
+from firebase_admin import db
+from datetime import date
 
 def MD5GUI(Frame):
     GUI = tk.Tk()
@@ -41,8 +45,13 @@ def clear(L1):
     L1.delete(0,tk.END)
 
 def fileChooser(window, L1): #select files and add to file array
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation")
+    print(ref.key)
+    #print(ref.get())
+
     global result
     global fileName
+    global keyPath
 
     fileName = askopenfilename()
     result = hashlib.md5()
@@ -55,7 +64,14 @@ def fileChooser(window, L1): #select files and add to file array
 
     L1.insert(tk.END, fileName, result.hexdigest())
 
+    keyPath = ref.push({
+        'Session File': fileName, 'Hex Digest': result.hexdigest(), 'Recalculated Hex Digest': -1, 'Comparison': "NA"
+    })
+    print(keyPath.path)
+
 def recalc(window, L1):
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation").child(str(keyPath.key))
+    print(ref)
     global result1
 
     result1 = hashlib.md5()
@@ -68,11 +84,27 @@ def recalc(window, L1):
 
     L1.insert(tk.END, fileName, result1.hexdigest())
 
+
+    ref.update({
+        'Session File': fileName, 'Hex Digest': result.hexdigest(), 'Recalculated Hex Digest': result1.hexdigest(), 'Comparison': "NA"
+    })
+
 def MD5Comp(window): #empty until MD5 code
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation").child(str(keyPath.key))
+    print(ref.get())
+
     if result.hexdigest() == result1.hexdigest():
         window.configure(text = "The file has not been modified or tampered with")
+        ref.update({
+            'Session File': fileName, 'Hex Digest': result.hexdigest(), 'Recalculated Hex Digest': result1.hexdigest(),
+            'Comparison': "The file has not been modified or tampered with"
+        })
     else:
         window.configure(text = "The file has been modified or tampered with")
+        ref.update({
+            'Session File': fileName, 'Hex Digest': result.hexdigest(), 'Recalculated Hex Digest': result1.hexdigest(),
+            'Comparison': "The file has been modified or tampered with"
+        })
 
 
 
