@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "python-application-results": {
+      "hosting": {
+        "SrProject": [
+          "python-application-results"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "python-application-results"
+  }
+}
