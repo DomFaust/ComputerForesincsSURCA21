@@ -1,7 +1,43 @@
 <br><br><br><br>
-<h6 style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
+<h6 style="text-align: center; font-size: large; font-weight: bold; color: #00053E;">
   Welcome to our Computer Security Database!</h6>
 
-  <p style = "text-align: center; font-size: large; font-weight: bold; color: #00053E;">
-    Below, you can query the database that has been acquiring information throughout the duration of our project.</p>
+<p style="text-align: center; font-size: large; font-weight: bold; color: #00053E;">
+  Below, you can query the database that has been acquiring information throughout the duration of our project.</p>
 
+
+<mat-expansion-panel expanded hideToggle>
+    <mat-expansion-panel-header style="height: 50px;">
+      <mat-panel-title>
+        <h4 style="padding: 10px 0 5px 0 ; margin: 0">MD5</h4>
+      </mat-panel-title>
+      <mat-panel-description>
+        <em class="fas fa-bars right-expand"></em>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div style="height: 187px; overflow-y: auto; min-width: 211.19;">
+      <table class="table">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width:min-content;">Date_Time</th>
+            <th scope="col">Value</th>
+            <th scope="col">Comparison</th>
+            <th scope="col">Recalculated_Hex_Digest</th>
+            <th scope="col">Session_File</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let md5 of md5_db">
+              <!-- <td style="padding: 10px 0 0 3%"><input type="radio" [value] = "assessment" [(ngModel)]="currAssessment" [disabled]="assessment.status !== 'Completed'"></td> -->
+              <td>{{md5.Date_Time}}</td>
+              <td>{{md5.Value}}</td>
+              <td>{{md5.Comparison}}</td>
+              <td>{{md5.Recalculated_Hex_Digest}}</td>
+              <td>{{md5.Session_File}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-expansion-panel>
