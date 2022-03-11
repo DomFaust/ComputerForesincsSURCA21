@@ -44,7 +44,7 @@ def clear(L1):
 
 
 def calculate2(window, L1):
-    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%y") + "_SHA 2")
+    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%Y") + "_SHA 2")
     print(ref.get())
 
     window.configure(text="Sha 2")
@@ -94,7 +94,7 @@ def calculate2(window, L1):
 
 
 def calculate(window,L1):
-    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%y")+ "_SHA 1")
+    ref = db.reference("/SHA/" + date.today().strftime("%m_%d_%Y")+ "_SHA 1")
     print(ref.get())
 
     window.configure(text="Sha 1")

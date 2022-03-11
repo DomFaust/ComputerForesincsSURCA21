@@ -1,5 +1,5 @@
-import tkinter as tk
 import tkinterweb
+import tkinter as tk
 
 def url(Frame):
     root = tk.Tk()
@@ -8,9 +8,7 @@ def url(Frame):
     frame.pack(fill="both", expand=True)
     root.mainloop()
 
-
 if __name__ == "__main__":
-
-    url(root)
-# Let the window wait for any events
-    root.mainloop()
+    url(GUI)
+    # Let the window wait for any events
+    GUI.mainloop()

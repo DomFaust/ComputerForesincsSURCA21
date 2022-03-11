@@ -40,7 +40,7 @@ def clear(L1):
     L1.delete(0,tk.END)
 
 def pngInfo(window,L1):
-    ref = db.reference("/Picture Metadata/" + date.today().strftime("%m_%d_%y"))
+    ref = db.reference("/Picture Metadata/" + date.today().strftime("%m_%d_%Y"))
 
     imageName = askopenfilename(
         title="Select Picture File",

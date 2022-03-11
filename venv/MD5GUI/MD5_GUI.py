@@ -8,7 +8,7 @@ from datetime import date
 
 def MD5GUI(Frame):
     GUI = tk.Tk()
-    GUI.title('Senior Project')
+    GUI.title('MD5')
     GUI.geometry("700x300")
     GUI.config(background="white")
 
@@ -20,7 +20,7 @@ def MD5GUI(Frame):
                         command=lambda: [clear(L1),fileChooser(window,L1), switch(button1,button2)])
     button2 = tk.Button(GUI,
                         text="Recalculate MD5 Hash",
-                        command=lambda: [recalc(window,L1), switch2(button2,button3)])
+                        command=lambda: [recalc(window,L1), switch(button2,button3)])
     button3 = tk.Button(GUI,
                         text="MD5 Comparison",
                         command=lambda: [MD5Comp(window),switch(button1,button2)])
@@ -45,7 +45,7 @@ def clear(L1):
     L1.delete(0,tk.END)
 
 def fileChooser(window, L1): #select files and add to file array
-    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation")
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%Y") + "_MD5_Calculation")
     print(ref.key)
     #print(ref.get())
 
@@ -70,7 +70,7 @@ def fileChooser(window, L1): #select files and add to file array
     print(keyPath.path)
 
 def recalc(window, L1):
-    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation").child(str(keyPath.key))
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%Y") + "_MD5_Calculation").child(str(keyPath.key))
     print(ref)
     global result1
 
@@ -90,7 +90,7 @@ def recalc(window, L1):
     })
 
 def MD5Comp(window): #empty until MD5 code
-    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%y") + "_MD5_Calculation").child(str(keyPath.key))
+    ref = db.reference("/MD5/" + date.today().strftime("%m_%d_%Y") + "_MD5_Calculation").child(str(keyPath.key))
     print(ref.get())
 
     if result.hexdigest() == result1.hexdigest():
@@ -115,12 +115,6 @@ def switch(button1,button2):
     else:
         button1["state"] = "normal"
 
-def switch2(button2,button3):
-    if button2["state"] == "normal":
-        button2["state"] = "disabled"
-        button3["state"] = "normal"
-    else:
-        button2["state"] = "normal"
 
 
 

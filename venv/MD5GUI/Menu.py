@@ -10,6 +10,7 @@ from MD5GUI import PDF
 from MD5GUI import exifData
 from MD5GUI import PictureData
 from MD5GUI import Login
+from MD5GUI import BruteForce
 from datetime import date
 
 cred = firebase_admin.credentials.Certificate("C:\\Users\domin\Downloads\python-application-results-firebase-adminsdk-hwe4o-dbe377275c.json")
@@ -42,30 +43,40 @@ def png():
     win = tk.Toplevel(GUI).withdraw()
     PictureData.png(win)
 
+def brute():
+    win = tk.Toplevel(GUI).withdraw()
+    BruteForce.BruteForce(win)
+
+
 def login():
     win = tk.Toplevel(GUI).withdraw()
-
+    Login.login(win)
 
 if __name__ == "__main__":
     GUI = tk.Tk()
     GUI.title('Menu')
-    GUI.geometry("700x200")
+    GUI.geometry("265x200")
     GUI.config(background = "white")
    # tk.Button(GUI,text="Return to Main Menu",command=GUI.deiconify)
-    window = tk.Label(GUI, text = "Please Select What you Would Like to do",width=100,height=4,fg = "blue")
+    window = tk.Label(GUI, text = "Please Select What you Would Like to do",width=37,height=4,fg = "blue")
     window.grid(columnspan=2)
     md5Button = tk.Button(GUI, text="MD5 Comparison",command=MD5)
-    md5Button.grid(column=0, row=1)
+    md5Button.grid(column=0, row=1, sticky = 'ew')
     broButton = tk.Button(GUI, text="Browser",command = browser)
-    broButton.grid(column=1,row=1)
+    broButton.grid(column=1,row=1,sticky = 'ew')
     shaButton = tk.Button(GUI, text="Sha1 and Sha2",command = sha)
-    shaButton.grid(column=0,row=2)
+    shaButton.grid(column=0,row=2,sticky = 'ew')
     pdfButton = tk.Button(GUI,text="PDF Metadata",command = pdf)
-    pdfButton.grid(column=1,row=2)
-    jpgButton = tk.Button(GUI, text="Picture Exif Metadata (deprecated)", command = jpg)
-    jpgButton.grid(column=0, row=3)
+    pdfButton.grid(column=1,row=2,sticky = 'ew')
+   # jpgButton = tk.Button(GUI, text="Picture Exif Metadata (deprecated)", command = jpg)
+   # jpgButton.grid(column=0, row=3,sticky = 'ew')
+    bruteButton = tk.Button(GUI,text="Brute Force",command = brute)
+    bruteButton.grid(column=0,row=3,sticky = 'ew')
     pngButton = tk.Button(GUI, text="Picture Metadata", command = png)
-    pngButton.grid(column=1, row=3)
+    pngButton.grid(column=1, row=3,sticky = 'ew')
+   # logButton = tk.Button(GUI, text="Login",command = login)
+    #logButton.grid(columnspan=2, rowspan=2, sticky='n')
     buttonExit = tk.Button(GUI,text="Exit",command=exit)
-    buttonExit.grid(column=0,row=4)
+    buttonExit.grid(columnspan=2,rowspan=2,sticky = 'n')
+
     GUI.mainloop()

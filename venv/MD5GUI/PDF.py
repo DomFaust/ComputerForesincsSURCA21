@@ -36,7 +36,7 @@ def pdf(Frame):
     scroll.config(command=L1.xview)
 
 def pdfInfo(window,L1):
-    ref = db.reference("/PDF Metadata/" + date.today().strftime("%m_%d_%y"))
+    ref = db.reference("/PDF Metadata/" + date.today().strftime("%m_%d_%Y"))
     fileName = askopenfilename(
         title="Open PDF File",
         filetypes=(
