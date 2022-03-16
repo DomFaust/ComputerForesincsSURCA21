@@ -6,7 +6,7 @@ from PIL.ExifTags import TAGS
 imagename = r"C:\Users\Matt Savela\Desktop\image.jpg"
 image = Image.open(imagename)
 
-image.show()
+#image.show()
 
 
 
@@ -19,7 +19,7 @@ for ifd in exif:
         tagv= exif[ifd][tag]
         if isinstance(tagv, bytes):
             tagv = tagv[:10]
-        print(f'\t{tagn:25}: {tagv}')
+        print(f'\t{tagn}: {tagv}')
 print()
 
 #exif = image._getexif()
