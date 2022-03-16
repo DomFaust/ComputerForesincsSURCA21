@@ -1,4 +1,4 @@
-f = open("venv/wlist.txt", "a")
+f = open("wlist.txt", "a")
 s = 0
 e = 10000
 for num in range(s,e):
