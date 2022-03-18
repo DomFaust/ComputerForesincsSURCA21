@@ -1,10 +1,12 @@
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
+from collections import defaultdict
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 import json
 import firebase_admin
 from firebase_admin import db
+import datetime
 from datetime import date
 
 def png(Frame):
@@ -40,6 +42,7 @@ def clear(L1):
     L1.delete(0,tk.END)
 
 def pngInfo(window,L1):
+    data  = {}
     ref = db.reference("/Picture Metadata/" + date.today().strftime("%m_%d_%Y"))
 
     imageName = askopenfilename(
@@ -52,11 +55,29 @@ def pngInfo(window,L1):
 
     parser = createParser(imageName)
     metadata = extractMetadata(parser)
+    #data = metadata_as_dict(metadata)
+
+  #  print(data)
+
 
     for line in metadata.exportPlaintext():
-        L1.insert(tk.END,line)
-        #print(line)
-    ref.push(json.dumps(metadata.exportPlaintext(),separators= (", ", ": ")))
+        L1.insert(tk.END, line)
+    #metalist = metadata.exportPlaintext()
+    ref.push(json.loads(json.dumps(metadataAsDict(metadata), default=convertTimestamp)))
+    #L1.insert(tk.END,item)
+
+def convertTimestamp(item_date_object):
+    if isinstance(item_date_object, (datetime.date, datetime.datetime)):
+        #print(item_date_object.strftime("%m_%d_%Y %H:%M:%S"))
+        return item_date_object.strftime("%m_%d_%Y %H:%M:%S")
+
+def metadataAsDict(metadata):
+    return {item.key: (len(item.values) > 1 and
+                       [v.value for v in item.values] or
+                       item.values[0].value)
+            for item in metadata if item.values}
+
+   # ref.push(json.dumps(metadata.exportPlaintext(),separators= (", ", ": ")))
 
 
 if __name__ == "__main__":

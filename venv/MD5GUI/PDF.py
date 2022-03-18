@@ -1,4 +1,5 @@
 from PyPDF2 import PdfFileReader
+import pikepdf
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 import json
@@ -43,27 +44,35 @@ def pdfInfo(window,L1):
             ("PDF Files", "*.pdf"),
             ("All Files", "*.*")))
 
+    data = {}
 
-    pdf = PdfFileReader(fileName,strict=True,warndest=None,overwriteWarnings=True)
+    pdf = pikepdf.Pdf.open(fileName)
+    docinfo = pdf.docinfo
+    window.configure(text="Current Document Name: " + fileName)
+    L1.insert(tk.END, "Document Info:\n")
+    for key, value in docinfo.items():
+        L1.insert(tk.END,key.__str__().strip('/')+" : "+value.__str__())
+        data[key.__str__().strip('/')] = value.__str__()
+       # print(data)
+
+    ref.push(json.loads(json.dumps(data)))
 
     #print(pdf.documentInfo)
-    if(pdf.isEncrypted):
-        L1.insert(tk.END,"ERROR: "+fileName+" is Encrypted and Data Cannot be Retrieved")
-    else:
-        if(pdf.documentInfo == None):
-            window.configure(text="Current Document Name: " + fileName)
-            L1.insert(tk.END,"No PDF Data Found for " + fileName)
-        else:
-            window.configure(text="Current Document Name: " + fileName)
-            L1.insert(tk.END,"Document Info:\n",pdf.documentInfo)
-            con = json.dumps(pdf.documentInfo)
-            ref.push(con)
+    #if(pdf.isEncrypted):
+     #   L1.insert(tk.END,"ERROR: "+fileName+" is Encrypted and Data Cannot be Retrieved")
+    #else:
+     #   if(pdf.documentInfo == None):
+      #      window.configure(text="Current Document Name: " + fileName)
+       #     L1.insert(tk.END,"No PDF Data Found for " + fileName)
+        #else:
+         #   window.configure(text="Current Document Name: " + fileName)
+          #  L1.insert(tk.END,"Document Info:\n",pdf.documentInfo)
+           # con = json.dumps(pdf.documentInfo)
+            #ref.push(con)
            # print("??",con)
 
 
     #L1.insert(tk.END,"\nDocument Name: " + fileName)
-
-
 
 if __name__ == "__main__":
     pdf(GUI)
