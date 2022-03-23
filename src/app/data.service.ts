@@ -12,6 +12,8 @@ export class DataService {
   private md5URL: string = "";
   private pdfURL: string = "";
   private shaURL: string = "";
+  private pictureURL: string = "";
+  private bruteURL: string = "";
   private testing !: any;
 
   getMD5(): Observable<Array<Object>>{//Observable<MD5>{//Observable<Array<MD5>>{
@@ -29,9 +31,31 @@ export class DataService {
     return req;
   }
 
+  getSHA(): Observable<Array<Object>>{
+    let req = new Subject<Array<Object>>();
+    this.http.get<Request>(this.shaURL).subscribe(
+      (data: any) => {
+        req.next(data);
+        // console.log(data);
+        req.complete();
+      }
+    );
+    return req;
+  }
+
+  getPicture(){
+
+  }
+
+  getBrute(){
+    
+  }
+
   constructor(private http: HttpClient) {
     this.md5URL = this.site + "MD5" + ".json";
     this.pdfURL = this.site + "PDF Metadata" + ".json";
+    this.pictureURL = this.site + "Picture Metadata" + ".json";
     this.shaURL = this.site + "SHA" + ".json";
+    this.bruteURL = this.site + "Brute Force" + ".json";
   }
 }

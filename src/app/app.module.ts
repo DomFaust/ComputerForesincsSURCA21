@@ -27,6 +27,7 @@ import { Observable, of, Subject } from 'rxjs';
 // import { JwtInterceptor, ErrorInterceptor, appInitializer } from './_helpers';
 // import { AngularFireDatabase } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { MatTableModule } from '@angular/material/table';
 
 
 //Firebase
@@ -109,6 +110,7 @@ AngularFireModule.initializeApp(environment.firebase);
     MatTabsModule,
     MatIconModule,
     HttpClientModule,
+    MatTableModule,
 
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFireAnalyticsModule,

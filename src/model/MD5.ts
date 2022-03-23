@@ -1,9 +1,3 @@
-// export class MD5{
-//   details!: Array<any>;//Array<MD5Calculation>;
-
-// }
-
-
 export class MD5Calculation{
   Comparison !: any;//string;
   Hex_Digest !: any;//string;
@@ -13,7 +7,7 @@ export class MD5Calculation{
 
 export class MD5{
   Date_Time !: any;
-  Value !: any;
+  ID !: any;
   Comparison !: any;
   Hex_Digest !: any;
   Recalculated_Hex_Digest !: any;

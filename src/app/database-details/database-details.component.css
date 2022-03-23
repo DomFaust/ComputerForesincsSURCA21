@@ -1,0 +1,123 @@
+.mat-button:hover{
+  background-color: #0072BC;
+  border:  2px solid #FFE500;
+  color: white;
+
+}
+
+.mat-button{
+  border-radius: 10px;
+  border: 2px solid #00053E;
+  margin: 50px;
+}
+
+.sha2{
+  max-width: 125px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  text-align: center;
+  /* padding: 8px; */
+
+  border-bottom: 1px solid #DDD;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+.th, .td {
+
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #DDD;
+  border: 1px solid #00053E;
+}
+
+/* .tr:hover {background-color: #D6EEEE;} */
+
+.tr:nth-child(odd) {
+  background-color: #7BAFDE;
+}
+/*
+.tr:nth-child(even) {
+  background-color: #FFE500;
+} */
+
+.tr-header{
+  background-color: #00053E;
+  color:white;
+}
+
+.th-header{
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #DDD;
+  border: 1px solid #00053E;
+  background-color: #00053E;
+  color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+.text {
+  overflow: hidden;
+}
+.p {
+  text-align: center;
+  /* white-space: pre; */
+  /* transition: 30s; */
+  /* transition-duration: 15s;
+  transform-style: flat;
+  transition-timing-function: ease-in;
+  animation: normal ; */
+
+
+
+
+
+
+
+}
+
+
+.scroll-left {
+ height: 25px;
+ overflow: hidden;
+ position: relative;
+ /* background: yellow;
+ color: orange; */
+ /* border: 1px solid orange; */
+}
+.scroll-left p {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 25px;
+ text-align: center;
+ /* Starting position */
+ transform:translateX(100%);
+ /* Apply animation to this element */
+ animation: scroll-left 25s linear infinite;
+}
+
+/* Move it (define the animation) */
+@keyframes scroll-left {
+ 0%   {
+ transform: translateX(100%);
+ }
+ 100% {
+ transform: translateX(-100%);
+ }
+}
