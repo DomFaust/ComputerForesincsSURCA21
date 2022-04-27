@@ -1,4 +1,7 @@
+<body style="overflow-y: hidden; height: 800px;">
+
 <mat-tab-group mat-stretch-tabs>
+
   <mat-tab label="Welcome" class="mat-tab-labels">
     <h6 style="text-align: center; vertical-align: center; font-size: large; font-weight: bold; color: #00053E;">
       <br><br><br><br><br><br><br><br><br>
@@ -12,10 +15,42 @@
     </h6>
   </mat-tab>
 
+
+  <mat-tab label="Brute Force" class="mat-tab-labels">
+    <div style="overflow-y: auto; align-items: center; display: block; height: 750px;">
+      <table class="table" style="width:100%;">
+        <caption></caption>
+        <thead>
+          <tr class="tr-header">
+              <th class="th" scope="col" style="color: #ffe500">Date_Time</th>
+              <th class="th" scope="col" style="color: #ffe500">ID</th>
+              <th class="th" scope="col" style="color: #ffe500">File</th>
+              <th class="th" scope="col" style="color: #ffe500">Wordlist</th>
+              <th class="th" scope="col" style="color: #ffe500">Password</th>
+              <th class="th" scope="col" style="color: #ffe500">Decode_Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bf of brute_db" class="tr">
+              <td class="td" style="width: 20%; ">{{getAsDate(bf.Date_Time) | date: 'MMMM dd, YYYY'}}</td>
+              <td class="td" style="width: 20%; ">{{bf.ID}}</td>
+              <td class="td" style="width: 20%; ">{{bf.File}}</td>
+              <td class="td" style="width: 20%; ">{{bf.Wordlist}}</td>
+              <td class="td" style="width: 20%; ">{{bf.Password}}</td>
+              <td class="td" style="width: 20%; ">{{bf.Decode_Time}} seconds</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </mat-tab>
+
+
   <mat-tab label="MD5" class="mat-tab-labels">
 
-      <div style=" overflow-y: auto;">
-        <table class="table" style="width:95%; margin: 2.5%;">
+      <div style=" overflow-y: auto; display: block; align-items: center; height: 750px;">
+        <table class="table" style="width:100%; overflow-x: auto;">
           <caption></caption>
           <thead>
             <tr class="tr-header">
@@ -31,7 +66,7 @@
             <tr *ngFor="let md5 of md5_db" class="tr">
               <td class="td" style="width: 20%; ">{{getAsDate(md5.Date_Time) | date: 'MMMM dd, YYYY'}}</td>
               <td class="td" style="width: 20%; ">{{md5.ID}}</td>
-              <td class="td" style="width: 20%; ">{{md5.Comparison}}</td>
+              <td class="td" style="width: 20%; "><strong>{{md5.Comparison}}</strong></td>
               <td class="td" style="width: 20%; ">{{md5.Hex_Digest}}</td>
               <td class="td" style="width: 20%; ">{{md5.Recalculated_Hex_Digest}}</td>
               <td class="td" style="width: 20%; ">{{md5.Session_File}}</td>
@@ -41,12 +76,294 @@
       </div>
   </mat-tab>
 
-  <!-- <br><br><br><br><br><br> -->
+
+  <mat-tab label="PDF" class="mat-tab-labels">
+
+    <!-- <br><br><br><br> -->
+
+      <div style=" overflow-y: auto; align-items: center; display: block; height: 750px;">
+        <table style="width: 100%; align-items: center; overflow-x:auto; border: 1px solid #00053E">
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Date:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{getAsDate(pdf.Date_Time) | date: 'MMMM dd, YYYY'}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">ID:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.ID}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Title:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.Title}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Author:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.Author}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Creation Date:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.CreationDate}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Creator:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.Creator}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">ModDate:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              <!-- <div class="scroll-left"><p>{{pdf.ModDate}}</p></div> -->
+              {{pdf.ModDate}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Producer:</th>
+            <td class="td" *ngFor="let pdf of pdf_db">
+              {{pdf.Producer}}
+            </td>
+          </tr>
+
+        </table>
+      </div>
+  </mat-tab>
+
+
+  <mat-tab label="Picture Metadata" class="mat-tab-labels">
+
+    <!-- <br><br><br><br> -->
+
+      <div style=" overflow-y: auto; align-items: center; display:block; height: 750px;">
+        <table style=" width: 100%; align-items: center; overflow-x: auto; border: 1px solid #00053E">
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Date:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{getAsDate(pic.Date_Time) | date: 'MMMM dd, YYYY'}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">ID:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.ID}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Altitude:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.altitude}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Aperture Value:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.aperture_value}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Bits Per Pixel:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.bits_per_px}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Camera Brightness:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.cam_bright}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Camera Exposure:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              <!-- <div class="scroll-left"><p>{{pdf.ModDate}}</p></div> -->
+              {{pic.cam_exposure}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Camera Focal:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.cam_focal}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Camera Manufacturer:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.cam_manufacturer}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Camera Model:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.cam_model}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Comment:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.comment}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Compression:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.compression}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Copyright:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.copyright}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Creation Date:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.creation_date}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Digitized Date and Time:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.date_time_dig}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Original Date and Time:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.date_time_orig}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Endian:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.endian}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Exif Version:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.exif_ver}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Exposure Bias Value:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.exposure_bias}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Flashpix Version:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.flashpix_ver}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Focal Length:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.focal_length}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Focal Length in 35mm Film:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.focal_length_35mm}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Format Version:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.format_ver}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Height:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.height}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Height DPI:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.height_dpi}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Image Orientation:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.img_orient}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Iso Speed Ratings:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.iso_speed_ratings}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Latitude:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.latitude}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Longitude:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.longitude}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">MIME Type:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.mime_type}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Pixel Format:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.px_format}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Producer:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.producer}}
+            </td>
+          </tr><tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Shutter Speed Value:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.shutter_speed}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Thumbnail Size:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.thumbnail_size}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Width:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.width}}
+            </td>
+          </tr>
+          <tr class = "tr">
+            <th class="th-header" style="color: #ffe500">Width DPI:</th>
+            <td class="td" *ngFor="let pic of pic_db">
+              {{pic.width_dpi}}
+            </td>
+          </tr>
+        </table>
+      </div>
+  </mat-tab>
+
 
   <mat-tab label="SHA1" class="mat-tab-labels">
 
-      <div style="overflow-y: auto;">
-        <table class="table" style="width:95%; margin: 2.5%;">
+      <div style="overflow-y: auto; align-items: center; display:block; height: 750px;">
+        <table class="table" style="width:100%; overflow-x: auto;">
           <caption></caption>
           <thead>
             <tr class="tr-header">
@@ -74,169 +391,108 @@
 
   </mat-tab>
 
-  <!-- <br><br><br><br><br><br> -->
-
-
-  <!-- <mat-tab label="SHA2 V1" class="mat-tab-labels">
-    <mat-expansion-panel expanded hideToggle>
-      <mat-expansion-panel-header style="height: 50px;">
-        <mat-panel-title> -->
-          <!-- <h4 style="padding: 10px 0px 5px 0 ; margin: 0">SHA 2</h4> -->
-        <!-- </mat-panel-title>
-        <mat-panel-description>
-          <em class="fas fa-bars right-expand"></em>
-        </mat-panel-description>
-      </mat-expansion-panel-header> -->
-
-      <!-- <div style=" overflow-y: auto;">
-        <table class="table" style="width:100%">
-          <caption></caption>
-          <thead>
-            <tr>
-              <th class="th" scope="col" style="width:fit-content;">Date</th>
-              <th class="th" scope="col" style="width:fit-content;">ID</th>
-              <th class="th" scope="col" style="width:fit-content;">Session File</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 224 Block Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 224 Digest Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 224 Hex Digest</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 256 Block Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 256 Digest Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 256 Hex Digest</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 384 Block Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 384 Digest Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 384 Hex Digest</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 512 Block Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 512 Digest Size</th>
-              <th class="th" scope="col" style="width:fit-content;">SHA 512 Hex Digest</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let sha2 of sha2_db"> -->
-              <!-- <td style="padding: 10px 0 0 3%"><input type="radio" [value] = "assessment" [(ngModel)]="currAssessment" [disabled]="assessment.status !== 'Completed'"></td> -->
-              <!-- <td class="td" style="width:fit-content;">{{sha2.Date}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.ID}}</td>
-              <td class="sha2" title='{{sha2.Session_File}}' style="width:min-content">{{sha2.Session_File}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Block_Size_224}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Digest_Size_224}}</td>
-              <td class="sha2" title='{{sha2.Hex_Digest_224}}' style="padding:5px;">{{sha2.Hex_Digest_224}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Block_Size_256}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Digest_Size_256}}</td>
-              <td class="sha2" title='{{sha2.Hex_Digest_256}}' style="width:fit-content;">{{sha2.Hex_Digest_256}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Block_Size_384}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Digest_Size_384}}</td>
-              <td class="sha2" title='{{sha2.Hex_Digest_384}}' style="width:fit-content;">{{sha2.Hex_Digest_384}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Block_Size_512}}</td>
-              <td class="td" style="width:fit-content;">{{sha2.Digest_Size_512}}</td>
-              <td class="sha2" title='{{sha2.Hex_Digest_512}}' style="width:fit-content;">{{sha2.Hex_Digest_512}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </mat-expansion-panel>
-  </mat-tab> -->
-
 
   <mat-tab label="SHA2" class="mat-tab-labels">
 
-    <!-- <br><br><br><br> -->
+    <!-- <br><br> -->
 
-      <div style=" overflow-y: auto;">
-        <table style="align-items: center; width:95%; margin: 2.5%; border: 1px solid #00053E">
+      <div style="overflow-y: auto; align-items: center; display: block; height: 750px;">
+        <table style="align-items: center; width:100%; overflow-x: auto; border: 1px solid #00053E">
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">Date:</th>
+            <th class="th-header" style="color: #ffe500;">Date:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{getAsDate(sha.Date) | date: 'MMMM dd, YYYY'}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">ID:</th>
+            <th class="th-header" style="color: #ffe500;">ID:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.ID}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">Session File:</th>
+            <th class="th-header" style="color: #ffe500;">Session File:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Session_File}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 224 Block Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 224 Block Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Block_Size_224}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 224 Digest Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 224 Digest Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Digest_Size_224}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 224 Hex Digest:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 224 Hex Digest:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               <div class="scroll-left"><p>{{sha.Hex_Digest_224}}</p></div>
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 256 Block Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 256 Block Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Block_Size_256}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 256 Digest Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 256 Digest Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Digest_Size_256}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 256 Hex Digest:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 256 Hex Digest:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               <div class="scroll-left"><p>{{sha.Hex_Digest_256}}</p></div>
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 384 Block Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 384 Block Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Block_Size_384}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 384 Digest Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 384 Digest Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Digest_Size_384}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 384 Hex Digest:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 384 Hex Digest:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               <div class="scroll-left"><p>{{sha.Hex_Digest_384}}</p></div>
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 512 Block Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 512 Block Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Block_Size_512}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 512 Digest Size:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 512 Digest Size:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               {{sha.Digest_Size_512}}
             </td>
           </tr>
           <tr class = "tr">
-            <th class="th-header" style="color: #ffe500">SHA 512 Hex Digest:</th>
+            <th class="th-header" style="color: #ffe500;">SHA 512 Hex Digest:</th>
             <td class="td" *ngFor="let sha of sha2_db">
               <div class="scroll-left"><p>{{sha.Hex_Digest_512}}</p></div>
             </td>
           </tr>
-
         </table>
       </div>
   </mat-tab>
 
-
-
 </mat-tab-group>
+
+
+</body>

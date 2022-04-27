@@ -16,7 +16,22 @@ export class DataService {
   private bruteURL: string = "";
   private testing !: any;
 
-  getMD5(): Observable<Array<Object>>{//Observable<MD5>{//Observable<Array<MD5>>{
+  getBruteForce(): Observable<Array<Object>> {//Observable<MD5>{//Observable<Array<MD5>>{
+    let req = new Subject<Array<Object>>();//Subject<MD5>();//Subject<Array<MD5>>();
+    this.http.get<Request>(this.bruteURL).subscribe(
+      (data: any) => {
+        req.next(data);
+        // console.log(data);
+        this.testing = data;
+        req.complete();
+      }
+    );
+    // console.log("this is it: " + this.testing);
+    return req;
+  }
+
+
+  getMD5(): Observable<Array<Object>> {//Observable<MD5>{//Observable<Array<MD5>>{
     let req = new Subject<Array<Object>>();//Subject<MD5>();//Subject<Array<MD5>>();
     this.http.get<Request>(this.md5URL).subscribe(
       (data: any) => {
@@ -31,7 +46,7 @@ export class DataService {
     return req;
   }
 
-  getSHA(): Observable<Array<Object>>{
+  getSHA(): Observable<Array<Object>> {
     let req = new Subject<Array<Object>>();
     this.http.get<Request>(this.shaURL).subscribe(
       (data: any) => {
@@ -43,19 +58,34 @@ export class DataService {
     return req;
   }
 
-  getPicture(){
-
+  getPDF(): Observable<Array<Object>> {
+    let req = new Subject<Array<Object>>();
+    this.http.get<Request>(this.pdfURL).subscribe(
+      (data: any) => {
+        req.next(data);
+        req.complete();
+      }
+    );
+    return req;
   }
 
-  getBrute(){
-    
+  getPicture() {
+    let req = new Subject<Array<Object>>();
+    this.http.get<Request>(this.pictureURL).subscribe(
+        (data: any) => {
+          req.next(data);
+          req.complete();
+        }
+    );
+    return req;
   }
+
 
   constructor(private http: HttpClient) {
     this.md5URL = this.site + "MD5" + ".json";
-    this.pdfURL = this.site + "PDF Metadata" + ".json";
-    this.pictureURL = this.site + "Picture Metadata" + ".json";
+    this.pdfURL = this.site + "PDF%20Metadata" + ".json";
+    this.pictureURL = this.site + "Picture%20Metadata" + ".json";
     this.shaURL = this.site + "SHA" + ".json";
-    this.bruteURL = this.site + "Brute Force" + ".json";
+    this.bruteURL = this.site + "BruteForce" + ".json";
   }
 }
